@@ -5,7 +5,6 @@ import * as process from 'node:process';
 import { join } from 'path';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
-import { DatabaseModule } from './database/database.module';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
@@ -18,7 +17,6 @@ import { ConfigModule } from '@nestjs/config';
     ConfigModule.forRoot({ isGlobal: true }),
     UsersModule,
     AuthModule,
-    DatabaseModule,
   ],
   controllers: [],
   providers: [],

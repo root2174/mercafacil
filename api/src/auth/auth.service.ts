@@ -15,9 +15,13 @@ export class AuthService {
   async validateUser(username: string, password: string): Promise<any> {
     const user = await this.usersService.findOne(username);
 
-    const valid = await bcrypt.compare(password, user.password);
+    if (!user) {
+      throw new Error('User not found');
+    }
 
-    if (user && valid) {
+    const valid = bcrypt.compare(password, user.password);
+
+    if (valid) {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { password, ...result } = user;
       return result;
@@ -47,7 +51,7 @@ export class AuthService {
 
     const password = await bcrypt.hash(loginUserInput.password, 10);
 
-    this.usersService.create({
+    return this.usersService.create({
       ...loginUserInput,
       password,
     });
