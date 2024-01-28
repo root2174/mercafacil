@@ -2,6 +2,16 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Contact {
+  cellphone: String!
+  name: String!
+}
+
+input CreateContactInput {
+  cellphone: String!
+  name: String!
+}
+
 type LoginResponse {
   access_token: String!
   user: User!
@@ -13,6 +23,7 @@ input LoginUserInput {
 }
 
 type Mutation {
+  createContact(createContactInput: [CreateContactInput!]!): [Contact!]!
   login(loginUserInput: LoginUserInput!): LoginResponse!
   signup(loginUserInput: LoginUserInput!): User!
 }
