@@ -9,7 +9,7 @@ export class ContactsService {
   ) {}
 
   create(createContactInput: CreateContactInput[]): CreateContactInput[] {
-    this.client.emit('create_contact', createContactInput);
+    this.client.emit('create_contacts', createContactInput);
     return [...createContactInput];
   }
 }
